@@ -8,12 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		2C36CD0B2BF7747700B0D271 /* HealthKitDemoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C36CD0A2BF7747700B0D271 /* HealthKitDemoApp.swift */; };
-		2C36CD0D2BF7747700B0D271 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C36CD0C2BF7747700B0D271 /* ContentView.swift */; };
+		2C36CD0D2BF7747700B0D271 /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C36CD0C2BF7747700B0D271 /* DashboardView.swift */; };
 		2C36CD0F2BF7747900B0D271 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2C36CD0E2BF7747900B0D271 /* Assets.xcassets */; };
 		2C36CD132BF7747900B0D271 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2C36CD122BF7747900B0D271 /* Preview Assets.xcassets */; };
 		2C36CD1D2BF7747900B0D271 /* HealthKitDemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C36CD1C2BF7747900B0D271 /* HealthKitDemoTests.swift */; };
 		2C36CD272BF7747900B0D271 /* HealthKitDemoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C36CD262BF7747900B0D271 /* HealthKitDemoUITests.swift */; };
 		2C36CD292BF7747900B0D271 /* HealthKitDemoUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C36CD282BF7747900B0D271 /* HealthKitDemoUITestsLaunchTests.swift */; };
+		2C36CD362BF798AA00B0D271 /* HealthDataListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C36CD352BF798A900B0D271 /* HealthDataListView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,7 +37,7 @@
 /* Begin PBXFileReference section */
 		2C36CD072BF7747700B0D271 /* HealthKitDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HealthKitDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C36CD0A2BF7747700B0D271 /* HealthKitDemoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitDemoApp.swift; sourceTree = "<group>"; };
-		2C36CD0C2BF7747700B0D271 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		2C36CD0C2BF7747700B0D271 /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
 		2C36CD0E2BF7747900B0D271 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2C36CD102BF7747900B0D271 /* HealthKitDemo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = HealthKitDemo.entitlements; sourceTree = "<group>"; };
 		2C36CD122BF7747900B0D271 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -45,6 +46,7 @@
 		2C36CD222BF7747900B0D271 /* HealthKitDemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HealthKitDemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C36CD262BF7747900B0D271 /* HealthKitDemoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitDemoUITests.swift; sourceTree = "<group>"; };
 		2C36CD282BF7747900B0D271 /* HealthKitDemoUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitDemoUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		2C36CD352BF798A900B0D271 /* HealthDataListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthDataListView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,10 +98,11 @@
 			isa = PBXGroup;
 			children = (
 				2C36CD0A2BF7747700B0D271 /* HealthKitDemoApp.swift */,
-				2C36CD0C2BF7747700B0D271 /* ContentView.swift */,
+				2C36CD0C2BF7747700B0D271 /* DashboardView.swift */,
 				2C36CD0E2BF7747900B0D271 /* Assets.xcassets */,
 				2C36CD102BF7747900B0D271 /* HealthKitDemo.entitlements */,
 				2C36CD112BF7747900B0D271 /* Preview Content */,
+				2C36CD352BF798A900B0D271 /* HealthDataListView.swift */,
 			);
 			path = HealthKitDemo;
 			sourceTree = "<group>";
@@ -259,7 +262,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2C36CD0D2BF7747700B0D271 /* ContentView.swift in Sources */,
+				2C36CD362BF798AA00B0D271 /* HealthDataListView.swift in Sources */,
+				2C36CD0D2BF7747700B0D271 /* DashboardView.swift in Sources */,
 				2C36CD0B2BF7747700B0D271 /* HealthKitDemoApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

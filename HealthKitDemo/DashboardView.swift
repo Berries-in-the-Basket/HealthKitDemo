@@ -1,5 +1,5 @@
 //
-//  ContentView.swift
+//  DashboardView.swift
 //  HealthKitDemo
 //
 //  Created by Mariusz Smoliński on 17.05.24.
@@ -31,7 +31,7 @@ enum HealthMetric: CaseIterable, Identifiable{
     }
 }
 
-struct ContentView: View {
+struct DashboardView: View {
     @State private var selectedStat: HealthMetric = .steps
     
     
@@ -91,7 +91,7 @@ struct ContentView: View {
             .padding()
             .navigationTitle("Dashboard")
             .navigationDestination(for: HealthMetric.self) { metric in
-                Text(metric.title)
+                HealthDataListView(metric: metric)
             }
         }
         .tint(selectedStat.navigationTint)
@@ -99,5 +99,5 @@ struct ContentView: View {
 }
 
 #Preview {
-    ContentView()
+    DashboardView()
 }
