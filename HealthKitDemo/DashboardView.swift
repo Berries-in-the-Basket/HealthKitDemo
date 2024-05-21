@@ -32,6 +32,8 @@ enum HealthMetric: CaseIterable, Identifiable{
 }
 
 struct DashboardView: View {
+    @AppStorage("wasHealthKitAskPermissionViewDisplayed") private var wasHealthKitAskPermissionViewDisplayed = false
+    @State private var isShowingHealtKitAskPermissionView = true
     @State private var selectedStat: HealthMetric = .steps
     
     
@@ -89,10 +91,18 @@ struct DashboardView: View {
                 }
             }
             .padding()
+            .onAppear(perform: {
+                isShowingHealtKitAskPermissionView = !wasHealthKitAskPermissionViewDisplayed
+            })
             .navigationTitle("Dashboard")
             .navigationDestination(for: HealthMetric.self) { metric in
                 HealthDataListView(metric: metric)
             }
+            .sheet(isPresented: $isShowingHealtKitAskPermissionView, onDismiss: {
+                // to do fetch health kit data
+            }, content: {
+                HealtKitAskPermissionView(wasDisplayed: $wasHealthKitAskPermissionViewDisplayed)
+            })
         }
         .tint(selectedStat.navigationTint)
     }

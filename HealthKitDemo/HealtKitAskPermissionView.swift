@@ -12,6 +12,7 @@ struct HealtKitAskPermissionView: View {
     @Environment(HealthKitManager.self) var healthKitManager
     @Environment(\.dismiss) var dismiss
     @State var isShowingHealthAskKitPermissions = false
+    @Binding var wasDisplayed: Bool
     
     var askForPermissionText = """
 Give permission to use your Health data for this app.
@@ -39,6 +40,11 @@ Give permission to use your Health data for this app.
             
         }
         .padding(30)
+        
+        .onAppear(perform: {
+            wasDisplayed = true
+        })
+        
         .healthDataAccessRequest(store: healthKitManager.store, shareTypes: healthKitManager.types, readTypes: healthKitManager.types, trigger: isShowingHealthAskKitPermissions) { result in
             switch result{
             case .success(_):
@@ -52,6 +58,6 @@ Give permission to use your Health data for this app.
 }
 
 #Preview {
-    HealtKitAskPermissionView()
+    HealtKitAskPermissionView(wasDisplayed: .constant(true))
         .environment(HealthKitManager())
 }
