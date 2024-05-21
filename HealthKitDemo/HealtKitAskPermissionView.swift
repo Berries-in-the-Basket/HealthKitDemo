@@ -6,8 +6,12 @@
 //
 
 import SwiftUI
+import HealthKitUI
 
 struct HealtKitAskPermissionView: View {
+    @Environment(HealthKitManager.self) var healthKitManager
+    @Environment(\.dismiss) var dismiss
+    @State var isShowingHealthAskKitPermissions = false
     
     var askForPermissionText = """
 Give permission to use your Health data for this app.
@@ -29,15 +33,25 @@ Give permission to use your Health data for this app.
             }
             
             Button("Connect Apple Health"){
-                //ask for permission
+                isShowingHealthAskKitPermissions = true
             }
             .buttonStyle(.borderedProminent)
             
         }
         .padding(30)
+        .healthDataAccessRequest(store: healthKitManager.store, shareTypes: healthKitManager.types, readTypes: healthKitManager.types, trigger: isShowingHealthAskKitPermissions) { result in
+            switch result{
+            case .success(_):
+                dismiss()
+            case .failure(_):
+                //to do: handle failute state
+                dismiss()
+            }
+        }
     }
 }
 
 #Preview {
     HealtKitAskPermissionView()
+        .environment(HealthKitManager())
 }
