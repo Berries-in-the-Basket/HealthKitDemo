@@ -9,7 +9,7 @@ import Foundation
 import HealthKit
 import Observation
 
-@Observable 
+@Observable
 class HealthKitManager{
     let store = HKHealthStore()
     let types: Set = [HKQuantityType(.stepCount), HKQuantityType(.bodyMass)]
@@ -22,7 +22,7 @@ class HealthKitManager{
             let endDate = startDate
             
             let stepQuantity = HKQuantity(unit: .count(), doubleValue: .random(in: 4000...20000))
-//            let endDate = Calendar.current.date(byAdding: .day, value: -i, to: .now)
+            //            let endDate = Calendar.current.date(byAdding: .day, value: -i, to: .now)
             let stepSample = HKQuantitySample(type: HKQuantityType(.stepCount), quantity: stepQuantity, start: startDate, end: endDate)
             
             mockSamples.append(stepSample)
@@ -34,5 +34,33 @@ class HealthKitManager{
             mockSamples.append(weightSample)
         }
         try! await store.save(mockSamples)
+    }
+    
+    func fetchStepCount() async{
+        let calendar = Calendar.current
+        let today = calendar.startOfDay(for: .now)
+        let endDate = calendar.date(byAdding: .day, value: 1, to: today)!
+        let startDate = calendar.date(byAdding: .day, value: -28, to: endDate)
+        
+        let periodToFetchDataFor = HKQuery.predicateForSamples(withStart: startDate, end: endDate)
+        let dataForRequestedPeriod = HKSamplePredicate.quantitySample(type: HKQuantityType(.stepCount), predicate: periodToFetchDataFor)
+        
+        let stepsCountsQuery = HKStatisticsCollectionQueryDescriptor(predicate: dataForRequestedPeriod, options: .cumulativeSum, anchorDate: endDate, intervalComponents: .init(day: 1))
+        
+        let stepsCounts = try! await stepsCountsQuery.result(for: store)
+    }
+    
+    func fetchWeightData() async{
+        let calendar = Calendar.current
+        let today = calendar.startOfDay(for: .now)
+        let endDate = calendar.date(byAdding: .day, value: 1, to: today)!
+        let startDate = calendar.date(byAdding: .day, value: -28, to: endDate)
+        
+        let periodToFetchDataFor = HKQuery.predicateForSamples(withStart: startDate, end: endDate)
+        let dataForRequestedPeriod = HKSamplePredicate.quantitySample(type: HKQuantityType(.bodyMass), predicate: periodToFetchDataFor)
+        
+        let weightDataQuery = HKStatisticsCollectionQueryDescriptor(predicate: dataForRequestedPeriod, options: .mostRecent, anchorDate: endDate, intervalComponents: .init(day: 1))
+        
+        let weightData = try! await weightDataQuery.result(for: store)
     }
 }

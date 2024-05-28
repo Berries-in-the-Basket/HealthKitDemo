@@ -98,6 +98,9 @@ struct DashboardView: View {
             .task{
                 //commented out for future use
 //                await healthKitManager.addData()
+                
+//                await healthKitManager.fetchStepCount()
+//                await healthKitManager.fetchWeightData()
             }
             .navigationTitle("Dashboard")
             .navigationDestination(for: HealthMetric.self) { metric in
