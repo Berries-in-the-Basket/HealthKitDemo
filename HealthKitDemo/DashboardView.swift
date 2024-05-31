@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Charts
 
 enum HealthMetric: CaseIterable, Identifiable{
     var id: Self {self}
@@ -65,9 +66,14 @@ struct DashboardView: View {
                         }
                         .foregroundStyle(.secondary)
                         
-                        RoundedRectangle(cornerRadius: 12)
-                            .foregroundStyle(.secondary)
-                            .frame(height: 150)
+                        Chart{
+                            ForEach(healthKitManager.stepData) { steps in
+                                BarMark(x: .value("Date", steps.date, unit: .day),
+                                        y: .value("Steps", steps.value)
+                                )
+                            }
+                        }
+                        .frame(height: 150)
                     }
                     .padding()
                     .background(RoundedRectangle(cornerRadius: 12).fill(Color.gray.opacity(0.2)))
@@ -99,7 +105,7 @@ struct DashboardView: View {
                 //commented out for future use
 //                await healthKitManager.addData()
                 
-//                await healthKitManager.fetchStepCount()
+                await healthKitManager.fetchStepCount()
 //                await healthKitManager.fetchWeightData()
             }
             .navigationTitle("Dashboard")
