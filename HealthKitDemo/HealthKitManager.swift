@@ -49,10 +49,16 @@ class HealthKitManager{
         
         let stepsCountsQuery = HKStatisticsCollectionQueryDescriptor(predicate: dataForRequestedPeriod, options: .cumulativeSum, anchorDate: endDate, intervalComponents: .init(day: 1))
         
-        let stepsCounts = try! await stepsCountsQuery.result(for: store)
-        stepData = stepsCounts.statistics().map{
-            .init(date: $0.startDate, value: $0.sumQuantity()?.doubleValue(for: .count()) ?? 0)
+        do {
+            let stepsCounts = try await stepsCountsQuery.result(for: store)
+            stepData = stepsCounts.statistics().map{
+                .init(date: $0.startDate, value: $0.sumQuantity()?.doubleValue(for: .count()) ?? 0)
+            }
+        } catch {
+            
         }
+        
+        
     }
     
     func fetchWeightData() async{
@@ -66,9 +72,13 @@ class HealthKitManager{
         
         let weightDataQuery = HKStatisticsCollectionQueryDescriptor(predicate: dataForRequestedPeriod, options: .mostRecent, anchorDate: endDate, intervalComponents: .init(day: 1))
         
-        let weightRawData = try! await weightDataQuery.result(for: store)
-        weightData = weightRawData.statistics().map{
-            .init(date: $0.startDate, value: $0.mostRecentQuantity()?.doubleValue(for: .pound()) ?? 0)
+        do {
+            let weightRawData = try await weightDataQuery.result(for: store)
+            weightData = weightRawData.statistics().map{
+                .init(date: $0.startDate, value: $0.mostRecentQuantity()?.doubleValue(for: .pound()) ?? 0)
+            }
+        } catch  {
+            
         }
     }
 }

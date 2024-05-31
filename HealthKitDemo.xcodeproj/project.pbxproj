@@ -17,7 +17,7 @@
 		2C36CD362BF798AA00B0D271 /* HealthDataListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C36CD352BF798A900B0D271 /* HealthDataListView.swift */; };
 		2C36CD382BFCD8D600B0D271 /* HealtKitAskPermissionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C36CD372BFCD8D600B0D271 /* HealtKitAskPermissionView.swift */; };
 		2C36CD3A2BFCE12D00B0D271 /* HealthKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C36CD392BFCE12D00B0D271 /* HealthKitManager.swift */; };
-		2C36CD402C0A063600B0D271 /* HealthMetric.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C36CD3F2C0A063600B0D271 /* HealthMetric.swift */; };
+		2C36CD402C0A063600B0D271 /* HealthData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C36CD3F2C0A063600B0D271 /* HealthData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,7 +52,7 @@
 		2C36CD352BF798A900B0D271 /* HealthDataListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthDataListView.swift; sourceTree = "<group>"; };
 		2C36CD372BFCD8D600B0D271 /* HealtKitAskPermissionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealtKitAskPermissionView.swift; sourceTree = "<group>"; };
 		2C36CD392BFCE12D00B0D271 /* HealthKitManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitManager.swift; sourceTree = "<group>"; };
-		2C36CD3F2C0A063600B0D271 /* HealthMetric.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthMetric.swift; sourceTree = "<group>"; };
+		2C36CD3F2C0A063600B0D271 /* HealthData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,7 +103,7 @@
 		2C36CD092BF7747700B0D271 /* HealthKitDemo */ = {
 			isa = PBXGroup;
 			children = (
-				2C36CD3F2C0A063600B0D271 /* HealthMetric.swift */,
+				2C36CD3F2C0A063600B0D271 /* HealthData.swift */,
 				2C36CD392BFCE12D00B0D271 /* HealthKitManager.swift */,
 				2C36CD0A2BF7747700B0D271 /* HealthKitDemoApp.swift */,
 				2C36CD0C2BF7747700B0D271 /* DashboardView.swift */,
@@ -276,7 +276,7 @@
 				2C36CD0B2BF7747700B0D271 /* HealthKitDemoApp.swift in Sources */,
 				2C36CD3A2BFCE12D00B0D271 /* HealthKitManager.swift in Sources */,
 				2C36CD382BFCD8D600B0D271 /* HealtKitAskPermissionView.swift in Sources */,
-				2C36CD402C0A063600B0D271 /* HealthMetric.swift in Sources */,
+				2C36CD402C0A063600B0D271 /* HealthData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
