@@ -37,11 +37,20 @@ struct DashboardView: View {
     @AppStorage("wasHealthKitAskPermissionViewDisplayed") private var wasHealthKitAskPermissionViewDisplayed = false
     @State private var isShowingHealtKitAskPermissionView = true
     @State private var selectedStat: HealthMetric = .steps
+    @State private var chartRawSelectedDate: Date?
     
     var averageStepCount: Double{
         guard !healthKitManager.stepData.isEmpty else { return 0 }
         let totalSteps = healthKitManager.stepData.reduce(0){ $0 + $1.value }
         return totalSteps/Double(healthKitManager.stepData.count)
+    }
+    
+    var selectedHealthMetric: HealthData?{
+        guard let chartRawSelectedDate else { return nil }
+        let selectedMetric = healthKitManager.stepData.first {
+            Calendar.current.isDate(chartRawSelectedDate, inSameDayAs: $0.date)
+        }
+        return selectedMetric
     }
     
     var body: some View {
@@ -72,6 +81,11 @@ struct DashboardView: View {
                         .foregroundStyle(.secondary)
                         
                         Chart{
+                            if let selectedHealthMetric{
+                                RuleMark(x: .value("Selected Metric", selectedHealthMetric.date, unit: .day))
+                                    .foregroundStyle(Color.secondary.opacity(0.3))
+                                    .offset(y: -10)
+                            }
                             RuleMark(y: .value("Average", averageStepCount))
                                 .foregroundStyle(Color.secondary)
                                 .lineStyle(.init(lineWidth: 1, dash: [5]))
@@ -84,6 +98,7 @@ struct DashboardView: View {
                             }
                         }
                         .frame(height: 150)
+                        .chartXSelection(value: $chartRawSelectedDate)
                         .chartXAxis{
                             AxisMarks{
                                 AxisValueLabel(format: .dateTime.day().month(.defaultDigits))
