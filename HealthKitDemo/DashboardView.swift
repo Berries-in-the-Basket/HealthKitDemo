@@ -85,6 +85,7 @@ struct DashboardView: View {
                                 RuleMark(x: .value("Selected Metric", selectedHealthMetric.date, unit: .day))
                                     .foregroundStyle(Color.secondary.opacity(0.3))
                                     .offset(y: -10)
+                                    .annotation(position: .top, spacing: 0, overflowResolution: .init(x: .fit(to: .chart), y: .disabled)){ annotationView }
                             }
                             RuleMark(y: .value("Average", averageStepCount))
                                 .foregroundStyle(Color.secondary)
@@ -95,10 +96,11 @@ struct DashboardView: View {
                                         y: .value("Steps", steps.value)
                                 )
                                 .foregroundStyle(Color.blue.gradient)
+                                .opacity(chartRawSelectedDate == nil || steps.date == selectedHealthMetric?.date ? 1.0 : 0.3)
                             }
                         }
                         .frame(height: 150)
-                        .chartXSelection(value: $chartRawSelectedDate)
+                        .chartXSelection(value: $chartRawSelectedDate.animation(.easeInOut))
                         .chartXAxis{
                             AxisMarks{
                                 AxisValueLabel(format: .dateTime.day().month(.defaultDigits))
@@ -157,6 +159,24 @@ struct DashboardView: View {
             })
         }
         .tint(selectedStat.navigationTint)
+    }
+    
+    var annotationView: some View{
+        VStack(alignment: .leading){
+            Text(selectedHealthMetric?.date ?? .now, format: .dateTime.weekday(.abbreviated).month(.abbreviated).day())
+                .font(.footnote.bold())
+                .foregroundStyle(.secondary)
+            
+            Text(selectedHealthMetric?.value ?? 0, format: .number.precision(.fractionLength(0)))
+                .fontWeight(.heavy)
+                .foregroundStyle(.blue)
+        }
+        .padding(12)
+        .background(
+            RoundedRectangle(cornerRadius: 4)
+                .fill(Color(.secondarySystemBackground))
+                .shadow(color: .secondary.opacity(0.3), radius: 2)
+        )
     }
 }
 
