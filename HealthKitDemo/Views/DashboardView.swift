@@ -79,6 +79,7 @@ struct DashboardView: View {
 //                await healthKitManager.addData()
                 
                 await healthKitManager.fetchStepCount()
+                ChartMath.averageWeekedayCount(for: healthKitManager.stepData)
 //                await healthKitManager.fetchWeightData()
             }
             .navigationTitle("Dashboard")
