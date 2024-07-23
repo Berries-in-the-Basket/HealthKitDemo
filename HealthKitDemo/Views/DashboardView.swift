@@ -50,24 +50,7 @@ struct DashboardView: View {
                     .pickerStyle(.segmented)
                     
                     StepBarChartView(selectedStat: selectedStat, chartData: healthKitManager.stepData)
-                    
-                    VStack(alignment: .leading){
-                        VStack(alignment: .leading){
-                            Label("Averages", systemImage: "calendar")
-                                .font(.title3.bold())
-                                .foregroundStyle(.blue)
-                            Text("Last 28 Days")
-                                .font(.caption)
-                                .foregroundStyle(.secondary)
-                        }
-                        .padding(.bottom, 12)
-                        
-                        RoundedRectangle(cornerRadius: 12)
-                            .foregroundStyle(.secondary)
-                            .frame(height: 250)
-                    }
-                    .padding()
-                    .background(RoundedRectangle(cornerRadius: 12).fill(Color.gray.opacity(0.2)))
+                    StepPieChart(chartData: ChartMath.averageWeekedayCount(for: healthKitManager.stepData))
                 }
             }
             .padding()
