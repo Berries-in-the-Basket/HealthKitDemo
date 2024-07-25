@@ -81,5 +81,5 @@ extension Date{
 }
 
 #Preview {
-    StepPieChart(chartData: ChartMath.averageWeekedayCount(for: HealthData.mockData))
+    StepPieChart(chartData: ChartMath.averageWeekedayCount(for: MockData.steps))
 }

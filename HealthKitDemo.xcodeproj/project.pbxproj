@@ -23,6 +23,8 @@
 		2C659F692C4EFA4200543CF3 /* ChartDataTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C659F682C4EFA4200543CF3 /* ChartDataTypes.swift */; };
 		2C659F6C2C4EFE7D00543CF3 /* Algorithms in Frameworks */ = {isa = PBXBuildFile; productRef = 2C659F6B2C4EFE7D00543CF3 /* Algorithms */; };
 		2C659F6E2C5050CE00543CF3 /* StepPieChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C659F6D2C5050CE00543CF3 /* StepPieChart.swift */; };
+		2C659F702C51A30700543CF3 /* WeightLineChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C659F6F2C51A30700543CF3 /* WeightLineChart.swift */; };
+		2C659F722C51A86F00543CF3 /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C659F712C51A86F00543CF3 /* MockData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +64,8 @@
 		2C659F662C4EFA2C00543CF3 /* ChartMath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartMath.swift; sourceTree = "<group>"; };
 		2C659F682C4EFA4200543CF3 /* ChartDataTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartDataTypes.swift; sourceTree = "<group>"; };
 		2C659F6D2C5050CE00543CF3 /* StepPieChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepPieChart.swift; sourceTree = "<group>"; };
+		2C659F6F2C51A30700543CF3 /* WeightLineChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeightLineChart.swift; sourceTree = "<group>"; };
+		2C659F712C51A86F00543CF3 /* MockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,6 +160,7 @@
 			children = (
 				2C659F5B2C4D765D00543CF3 /* StepBarChartView.swift */,
 				2C659F6D2C5050CE00543CF3 /* StepPieChart.swift */,
+				2C659F6F2C51A30700543CF3 /* WeightLineChart.swift */,
 			);
 			path = ChartViews;
 			sourceTree = "<group>";
@@ -182,6 +187,7 @@
 			isa = PBXGroup;
 			children = (
 				2C36CD3F2C0A063600B0D271 /* HealthData.swift */,
+				2C659F712C51A86F00543CF3 /* MockData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -332,9 +338,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				2C36CD362BF798AA00B0D271 /* HealthDataListView.swift in Sources */,
+				2C659F722C51A86F00543CF3 /* MockData.swift in Sources */,
 				2C36CD0D2BF7747700B0D271 /* DashboardView.swift in Sources */,
 				2C36CD0B2BF7747700B0D271 /* HealthKitDemoApp.swift in Sources */,
 				2C659F5C2C4D765D00543CF3 /* StepBarChartView.swift in Sources */,
+				2C659F702C51A30700543CF3 /* WeightLineChart.swift in Sources */,
 				2C36CD3A2BFCE12D00B0D271 /* HealthKitManager.swift in Sources */,
 				2C36CD382BFCD8D600B0D271 /* HealtKitAskPermissionView.swift in Sources */,
 				2C659F672C4EFA2C00543CF3 /* ChartMath.swift in Sources */,
