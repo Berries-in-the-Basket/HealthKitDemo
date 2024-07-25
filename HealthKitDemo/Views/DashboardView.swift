@@ -49,8 +49,15 @@ struct DashboardView: View {
                     }
                     .pickerStyle(.segmented)
                     
-                    StepBarChartView(selectedStat: selectedStat, chartData: healthKitManager.stepData)
-                    StepPieChart(chartData: ChartMath.averageWeekedayCount(for: healthKitManager.stepData))
+                    switch selectedStat {
+                    case .steps:
+                        StepBarChartView(selectedStat: selectedStat, chartData: healthKitManager.stepData)
+                        StepPieChart(chartData: ChartMath.averageWeekedayCount(for: healthKitManager.stepData))
+                    case .weight:
+                        WeightLineChart(selectedStat: selectedStat, chartData: healthKitManager.weightData)
+                    }
+                    
+                    
                 }
             }
             .padding()
@@ -63,7 +70,7 @@ struct DashboardView: View {
                 
                 await healthKitManager.fetchStepCount()
                 ChartMath.averageWeekedayCount(for: healthKitManager.stepData)
-//                await healthKitManager.fetchWeightData()
+                await healthKitManager.fetchWeightData()
             }
             .navigationTitle("Dashboard")
             .navigationDestination(for: HealthMetric.self) { metric in
