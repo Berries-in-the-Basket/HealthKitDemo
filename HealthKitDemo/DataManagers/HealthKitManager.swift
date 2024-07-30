@@ -15,6 +15,7 @@ class HealthKitManager{
     let types: Set = [HKQuantityType(.stepCount), HKQuantityType(.bodyMass)]
     var stepData: [HealthData] = []
     var weightData: [HealthData] = []
+    var weightDifferentialsData: [HealthData] = []
     
     func addData() async{
         var mockSamples: [HKQuantitySample] = []
@@ -57,8 +58,6 @@ class HealthKitManager{
         } catch {
             
         }
-        
-        
     }
     
     func fetchWeightData() async{
@@ -75,6 +74,27 @@ class HealthKitManager{
         do {
             let weightRawData = try await weightDataQuery.result(for: store)
             weightData = weightRawData.statistics().map{
+                .init(date: $0.startDate, value: $0.mostRecentQuantity()?.doubleValue(for: .pound()) ?? 0)
+            }
+        } catch  {
+            
+        }
+    }
+    
+    func fetchWeightDataForAverageDifferentials() async{
+        let calendar = Calendar.current
+        let today = calendar.startOfDay(for: .now)
+        let endDate = calendar.date(byAdding: .day, value: 1, to: today)!
+        let startDate = calendar.date(byAdding: .day, value: -29, to: endDate)
+        
+        let periodToFetchDataFor = HKQuery.predicateForSamples(withStart: startDate, end: endDate)
+        let dataForRequestedPeriod = HKSamplePredicate.quantitySample(type: HKQuantityType(.bodyMass), predicate: periodToFetchDataFor)
+        
+        let weightDataQuery = HKStatisticsCollectionQueryDescriptor(predicate: dataForRequestedPeriod, options: .mostRecent, anchorDate: endDate, intervalComponents: .init(day: 1))
+        
+        do {
+            let weightRawData = try await weightDataQuery.result(for: store)
+            weightDifferentialsData = weightRawData.statistics().map{
                 .init(date: $0.startDate, value: $0.mostRecentQuantity()?.doubleValue(for: .pound()) ?? 0)
             }
         } catch  {

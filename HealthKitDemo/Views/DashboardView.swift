@@ -70,7 +70,8 @@ struct DashboardView: View {
                 
                 await healthKitManager.fetchStepCount()
                 ChartMath.averageWeekedayCount(for: healthKitManager.stepData)
-                await healthKitManager.fetchWeightData()
+                await healthKitManager.fetchWeightDataForAverageDifferentials()
+                ChartMath.averageDailyWeightDifferences(weights: healthKitManager.weightDifferentialsData)
             }
             .navigationTitle("Dashboard")
             .navigationDestination(for: HealthMetric.self) { metric in
