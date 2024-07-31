@@ -55,9 +55,8 @@ struct DashboardView: View {
                         StepPieChart(chartData: ChartMath.averageWeekedayCount(for: healthKitManager.stepData))
                     case .weight:
                         WeightLineChart(selectedStat: selectedStat, chartData: healthKitManager.weightData)
+                        WeightDiffBarChart(chartData: ChartMath.averageDailyWeightDifferences(weights: healthKitManager.weightData))
                     }
-                    
-                    
                 }
             }
             .padding()
@@ -66,10 +65,11 @@ struct DashboardView: View {
             })
             .task{
                 //commented out for future use
-//                await healthKitManager.addData()
+                //                await healthKitManager.addData()
                 
                 await healthKitManager.fetchStepCount()
                 ChartMath.averageWeekedayCount(for: healthKitManager.stepData)
+                await healthKitManager.fetchWeightData()
                 await healthKitManager.fetchWeightDataForAverageDifferentials()
                 ChartMath.averageDailyWeightDifferences(weights: healthKitManager.weightDifferentialsData)
             }
@@ -85,8 +85,6 @@ struct DashboardView: View {
         }
         .tint(selectedStat.navigationTint)
     }
-    
-
 }
 
 #Preview {
