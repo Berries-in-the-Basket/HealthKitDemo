@@ -36,7 +36,8 @@ Give permission to use your Health data for this app.
             Button("Connect Apple Health"){
                 isShowingHealthAskKitPermissions = true
             }
-            .buttonStyle(.borderedProminent)
+            .applyCompatibleButtonStyle()
+
             
         }
         .padding(30)

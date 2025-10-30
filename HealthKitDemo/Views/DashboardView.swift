@@ -60,25 +60,45 @@ struct DashboardView: View {
                 }
             }
             .padding()
-            .onAppear(perform: {
+            .onAppear {
                 isShowingHealtKitAskPermissionView = !wasHealthKitAskPermissionViewDisplayed
-            })
-            .task{
-                //commented out for future use
-                //                await healthKitManager.addData()
-                
-                await healthKitManager.fetchStepCount()
-                ChartMath.averageWeekedayCount(for: healthKitManager.stepData)
-                await healthKitManager.fetchWeightData()
-                await healthKitManager.fetchWeightDataForAverageDifferentials()
-                ChartMath.averageDailyWeightDifferences(weights: healthKitManager.weightDifferentialsData)
+            }
+            .task {
+                // If the sheet won't be shown (already displayed before), request programmatically
+                if !isShowingHealtKitAskPermissionView {
+                    do {
+                        try await healthKitManager.requestAuthorization()
+                        // Optionally seed mock data
+                        await healthKitManager.addData()
+                        await healthKitManager.fetchStepCount()
+                        ChartMath.averageWeekedayCount(for: healthKitManager.stepData)
+                        await healthKitManager.fetchWeightData()
+                        await healthKitManager.fetchWeightDataForAverageDifferentials()
+                        ChartMath.averageDailyWeightDifferences(weights: healthKitManager.weightDifferentialsData)
+                    } catch {
+                        // Handle denied or failed auth gracefully
+                        print("HealthKit authorization failed: \(error)")
+                    }
+                }
             }
             .navigationTitle("Dashboard")
             .navigationDestination(for: HealthMetric.self) { metric in
                 HealthDataListView(metric: metric)
             }
             .sheet(isPresented: $isShowingHealtKitAskPermissionView, onDismiss: {
-                // to do fetch health kit data
+                // After the HealthKitUI sheet, try to fetch data
+                Task {
+                    do {
+                        // Request programmatically as well to ensure state is set and isAuthorized flips
+                        try await healthKitManager.requestAuthorization()
+                        await healthKitManager.addData()
+                        await healthKitManager.fetchStepCount()
+                        await healthKitManager.fetchWeightData()
+                        await healthKitManager.fetchWeightDataForAverageDifferentials()
+                    } catch {
+                        print("Authorization after sheet failed: \(error)")
+                    }
+                }
             }, content: {
                 HealtKitAskPermissionView(wasDisplayed: $wasHealthKitAskPermissionViewDisplayed)
             })
