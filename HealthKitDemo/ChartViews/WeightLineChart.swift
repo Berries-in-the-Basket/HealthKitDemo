@@ -83,7 +83,9 @@ struct WeightLineChart: View {
             }
         }
         .padding()
-        .background(RoundedRectangle(cornerRadius: 12).fill(Color.gray.opacity(0.2)))
+        .background(RoundedRectangle(cornerRadius: 24, style: .continuous)
+            .stroke(.gray.opacity(0.5), lineWidth: 0.5)
+            .fill(Color(.secondarySystemBackground).gradient.opacity(0.5)))
     }
     
     var annotationView: some View{

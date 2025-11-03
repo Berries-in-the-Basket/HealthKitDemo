@@ -61,6 +61,7 @@ struct StepBarChartView: View {
                     BarMark(x: .value("Date", steps.date, unit: .day),
                             y: .value("Steps", steps.value)
                     )
+                    .cornerRadius(3)
                     .foregroundStyle(Color.blue.gradient)
                     .opacity(chartRawSelectedDate == nil || steps.date == selectedHealthMetric?.date ? 1.0 : 0.3)
                 }
@@ -82,7 +83,9 @@ struct StepBarChartView: View {
             
         }
         .padding()
-        .background(RoundedRectangle(cornerRadius: 12).fill(Color.gray.opacity(0.2)))
+        .background(RoundedRectangle(cornerRadius: 24, style: .continuous)
+            .stroke(.gray.opacity(0.5), lineWidth: 0.5)
+            .fill(Color(.secondarySystemBackground).gradient.opacity(0.5)))
     }
     
     var annotationView: some View{

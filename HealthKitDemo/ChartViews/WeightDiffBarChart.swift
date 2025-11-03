@@ -47,6 +47,7 @@ struct WeightDiffBarChart: View {
                     BarMark(x: .value("Date", weightDiff.date, unit: .day),
                             y: .value("Weight", weightDiff.value)
                     )
+                    .cornerRadius(3)
                     .foregroundStyle(weightDiff.value >= 0 ? Color.green.gradient : Color.indigo.gradient)
                     .opacity(chartRawSelectedDate == nil || weightDiff.date == selectedData?.date ? 1.0 : 0.3)
                 }
@@ -68,7 +69,9 @@ struct WeightDiffBarChart: View {
             
         }
         .padding()
-        .background(RoundedRectangle(cornerRadius: 12).fill(Color.gray.opacity(0.2)))
+        .background(RoundedRectangle(cornerRadius: 24, style: .continuous)
+            .stroke(.gray.opacity(0.5), lineWidth: 0.5)
+            .fill(Color(.secondarySystemBackground).gradient.opacity(0.5)))
     }
     
     var annotationView: some View{

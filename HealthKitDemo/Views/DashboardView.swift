@@ -38,6 +38,10 @@ struct DashboardView: View {
     @State private var isShowingHealtKitAskPermissionView = true
     @State private var selectedStat: HealthMetric = .steps
     
+    var backgroundColor: Color{
+        selectedStat == .steps ? .pink : .indigo
+    }
+    
     var body: some View {
         NavigationStack{
             ScrollView{
@@ -58,8 +62,8 @@ struct DashboardView: View {
                         WeightDiffBarChart(chartData: ChartMath.averageDailyWeightDifferences(weights: healthKitManager.weightData))
                     }
                 }
+                .padding()
             }
-            .padding()
             .onAppear {
                 isShowingHealtKitAskPermissionView = !wasHealthKitAskPermissionViewDisplayed
             }
@@ -82,6 +86,8 @@ struct DashboardView: View {
                 }
             }
             .navigationTitle("Dashboard")
+            .toolbarTitleDisplayMode(.inlineLarge)
+            .background(LinearGradient(colors: [backgroundColor.opacity(0.25), .clear], startPoint: .topLeading, endPoint: .bottomTrailing))
             .navigationDestination(for: HealthMetric.self) { metric in
                 HealthDataListView(metric: metric)
             }
