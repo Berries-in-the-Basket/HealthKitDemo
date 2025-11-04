@@ -39,7 +39,7 @@ struct DashboardView: View {
     @State private var selectedStat: HealthMetric = .steps
     
     var backgroundColor: Color{
-        selectedStat == .steps ? .pink : .indigo
+        selectedStat == .steps ? .pink : .cyan
     }
     
     var body: some View {

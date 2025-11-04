@@ -10,7 +10,7 @@ import SwiftUI
 struct HealthDataListView: View {
     var metric: HealthMetric
     var backgroundColor: Color{
-        metric == .steps ? .pink : .indigo
+        metric == .steps ? .pink : .cyan
     }
     
     var body: some View {
