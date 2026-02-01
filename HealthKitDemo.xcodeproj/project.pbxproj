@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -72,6 +72,10 @@
 		2CA7C4782EB2D3DB00105E3A /* CompatibilityModifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompatibilityModifiers.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		2CA7C47A2EBAA4A700105E3A /* Utilities */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Utilities; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
+
 /* Begin PBXFrameworksBuildPhase section */
 		2C36CD042BF7747700B0D271 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
@@ -121,6 +125,7 @@
 		2C36CD092BF7747700B0D271 /* HealthKitDemo */ = {
 			isa = PBXGroup;
 			children = (
+				2CA7C47A2EBAA4A700105E3A /* Utilities */,
 				2C659F612C4EF9D300543CF3 /* ChartHelpers */,
 				2C659F602C4D7ED800543CF3 /* Model */,
 				2C659F5F2C4D7EB300543CF3 /* DataManagers */,
@@ -221,6 +226,9 @@
 			buildRules = (
 			);
 			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				2CA7C47A2EBAA4A700105E3A /* Utilities */,
 			);
 			name = HealthKitDemo;
 			packageProductDependencies = (

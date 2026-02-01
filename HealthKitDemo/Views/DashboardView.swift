@@ -108,6 +108,15 @@ struct DashboardView: View {
             }, content: {
                 HealtKitAskPermissionView(wasDisplayed: $wasHealthKitAskPermissionViewDisplayed)
             })
+            .toolbar{
+                if #available(iOS 26.0, *){
+                    if DataAnalyzer.shared.model.isAvailable {
+                        Button("Analyze Data", systemImage: "apple.intelligence") {
+                            print("Apple Intelligence is on")
+                        }
+                    }
+                }
+            }
         }
         .tint(selectedStat.navigationTint)
     }
