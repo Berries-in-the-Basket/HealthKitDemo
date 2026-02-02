@@ -113,6 +113,9 @@ struct DashboardView: View {
                     if DataAnalyzer.shared.model.isAvailable {
                         Button("Analyze Data", systemImage: "apple.intelligence") {
                             print("Apple Intelligence is on")
+                            Task {
+                                await DataAnalyzer.shared.analyseHealthData()
+                            }
                         }
                     }
                 }
