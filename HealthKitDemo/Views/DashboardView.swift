@@ -37,6 +37,7 @@ struct DashboardView: View {
     @AppStorage("wasHealthKitAskPermissionViewDisplayed") private var wasHealthKitAskPermissionViewDisplayed = false
     @State private var isShowingHealtKitAskPermissionView = true
     @State private var selectedStat: HealthMetric = .steps
+    @State private var isShowingAICoachView = false
     
     var backgroundColor: Color{
         selectedStat == .steps ? .pink : .cyan
@@ -91,6 +92,7 @@ struct DashboardView: View {
             .navigationDestination(for: HealthMetric.self) { metric in
                 HealthDataListView(metric: metric)
             }
+            .customSheet(isPresented: $isShowingAICoachView)
             .sheet(isPresented: $isShowingHealtKitAskPermissionView, onDismiss: {
                 // After the HealthKitUI sheet, try to fetch data
                 Task {
@@ -113,6 +115,7 @@ struct DashboardView: View {
                     if DataAnalyzer.shared.model.isAvailable {
                         Button("Analyze Data", systemImage: "apple.intelligence") {
                             print("Apple Intelligence is on")
+                            isShowingAICoachView.toggle()
                             Task {
                                 await DataAnalyzer.shared.analyseHealthData()
                             }

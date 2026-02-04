@@ -14,6 +14,7 @@ import Playgrounds
 final class DataAnalyzer{
     static let shared = DataAnalyzer()
     let model = SystemLanguageModel.default
+    var aiCoachMessage: String.PartiallyGenerated?
     
     private init() {}
     
@@ -60,8 +61,11 @@ final class DataAnalyzer{
         """
         
         do{
-            let response = try await session.respond(to: prompt)
-            print(response.content)
+            let responseStream = session.streamResponse(to: prompt)
+            for try await line in responseStream {
+                print(line.content)
+                aiCoachMessage = line.content
+            }
         } catch{
             print(error.localizedDescription)
         }

@@ -26,6 +26,7 @@
 		2C659F702C51A30700543CF3 /* WeightLineChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C659F6F2C51A30700543CF3 /* WeightLineChart.swift */; };
 		2C659F722C51A86F00543CF3 /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C659F712C51A86F00543CF3 /* MockData.swift */; };
 		2C659F742C593A5400543CF3 /* WeightDiffBarChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C659F732C593A5400543CF3 /* WeightDiffBarChart.swift */; };
+		2C8D6F242F33F4BC00C27ABC /* AICoachView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C8D6F232F33F4BC00C27ABC /* AICoachView.swift */; };
 		2CA7C4792EB2D3DB00105E3A /* CompatibilityModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CA7C4782EB2D3DB00105E3A /* CompatibilityModifiers.swift */; };
 /* End PBXBuildFile section */
 
@@ -69,6 +70,7 @@
 		2C659F6F2C51A30700543CF3 /* WeightLineChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeightLineChart.swift; sourceTree = "<group>"; };
 		2C659F712C51A86F00543CF3 /* MockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockData.swift; sourceTree = "<group>"; };
 		2C659F732C593A5400543CF3 /* WeightDiffBarChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeightDiffBarChart.swift; sourceTree = "<group>"; };
+		2C8D6F232F33F4BC00C27ABC /* AICoachView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AICoachView.swift; sourceTree = "<group>"; };
 		2CA7C4782EB2D3DB00105E3A /* CompatibilityModifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompatibilityModifiers.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -182,6 +184,7 @@
 				2C36CD352BF798A900B0D271 /* HealthDataListView.swift */,
 				2C36CD372BFCD8D600B0D271 /* HealtKitAskPermissionView.swift */,
 				2CA7C4782EB2D3DB00105E3A /* CompatibilityModifiers.swift */,
+				2C8D6F232F33F4BC00C27ABC /* AICoachView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -363,6 +366,7 @@
 				2C659F672C4EFA2C00543CF3 /* ChartMath.swift in Sources */,
 				2C36CD402C0A063600B0D271 /* HealthData.swift in Sources */,
 				2C659F692C4EFA4200543CF3 /* ChartDataTypes.swift in Sources */,
+				2C8D6F242F33F4BC00C27ABC /* AICoachView.swift in Sources */,
 				2C659F742C593A5400543CF3 /* WeightDiffBarChart.swift in Sources */,
 				2C659F6E2C5050CE00543CF3 /* StepPieChart.swift in Sources */,
 			);

@@ -27,3 +27,26 @@ public extension View {
     //     }
     // }
 }
+
+struct CustomSheet: ViewModifier{
+    @Binding var isPresented: Bool
+    
+    func body(content: Content) -> some View {
+        if #available(iOS 26.0, *){
+            content.sheet(isPresented: $isPresented) {
+                DataAnalyzer.shared.aiCoachMessage = ""
+            } content: {
+                AICoachView()
+                    .presentationDetents([.fraction(0.8)])
+            }
+        }else{
+            content
+        }
+    }
+}
+
+extension View{
+    func customSheet(isPresented: Binding<Bool>) -> some View {
+        self.modifier(CustomSheet(isPresented: isPresented))
+    }
+}
