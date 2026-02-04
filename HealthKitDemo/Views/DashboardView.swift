@@ -38,6 +38,7 @@ struct DashboardView: View {
     @State private var isShowingHealtKitAskPermissionView = true
     @State private var selectedStat: HealthMetric = .steps
     @State private var isShowingAICoachView = false
+    @Namespace var zoomTransition
     
     var backgroundColor: Color{
         selectedStat == .steps ? .pink : .cyan
@@ -92,7 +93,7 @@ struct DashboardView: View {
             .navigationDestination(for: HealthMetric.self) { metric in
                 HealthDataListView(metric: metric)
             }
-            .customSheet(isPresented: $isShowingAICoachView)
+            .customSheet(isPresented: $isShowingAICoachView, namespace: zoomTransition)
             .sheet(isPresented: $isShowingHealtKitAskPermissionView, onDismiss: {
                 // After the HealthKitUI sheet, try to fetch data
                 Task {
@@ -113,13 +114,16 @@ struct DashboardView: View {
             .toolbar{
                 if #available(iOS 26.0, *){
                     if DataAnalyzer.shared.model.isAvailable {
-                        Button("Analyze Data", systemImage: "apple.intelligence") {
-                            print("Apple Intelligence is on")
-                            isShowingAICoachView.toggle()
-                            Task {
-                                await DataAnalyzer.shared.analyseHealthData()
+                        ToolbarItem {
+                            Button("Analyze Data", systemImage: "apple.intelligence") {
+                                print("Apple Intelligence is on")
+                                isShowingAICoachView.toggle()
+                                Task {
+                                    await DataAnalyzer.shared.analyseHealthData()
+                                }
                             }
                         }
+                        .matchedTransitionSource(id: "aiCoachView", in: zoomTransition)
                     }
                 }
             }

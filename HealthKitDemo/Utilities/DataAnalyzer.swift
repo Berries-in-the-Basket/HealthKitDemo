@@ -15,6 +15,7 @@ final class DataAnalyzer{
     static let shared = DataAnalyzer()
     let model = SystemLanguageModel.default
     var aiCoachMessage: String.PartiallyGenerated?
+    var isAnalyzing = false
     
     private init() {}
     
@@ -39,6 +40,7 @@ final class DataAnalyzer{
     }
     
     func analyseHealthData() async{
+        isAnalyzing = true
         let session = LanguageModelSession(
             tools: [HealthDataTool()],
             instructions: "You are a high-energy motivational fitness coach. You love to analyze step count and health data to motivate people to get fit."
@@ -63,6 +65,7 @@ final class DataAnalyzer{
         do{
             let responseStream = session.streamResponse(to: prompt)
             for try await line in responseStream {
+                isAnalyzing = false
                 print(line.content)
                 aiCoachMessage = line.content
             }

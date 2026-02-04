@@ -30,6 +30,7 @@ public extension View {
 
 struct CustomSheet: ViewModifier{
     @Binding var isPresented: Bool
+    let passedNamespace: Namespace.ID
     
     func body(content: Content) -> some View {
         if #available(iOS 26.0, *){
@@ -38,6 +39,7 @@ struct CustomSheet: ViewModifier{
             } content: {
                 AICoachView()
                     .presentationDetents([.fraction(0.8)])
+                    .navigationTransition(.zoom(sourceID: "aiCoachView", in: passedNamespace))
             }
         }else{
             content
@@ -46,7 +48,7 @@ struct CustomSheet: ViewModifier{
 }
 
 extension View{
-    func customSheet(isPresented: Binding<Bool>) -> some View {
-        self.modifier(CustomSheet(isPresented: isPresented))
+    func customSheet(isPresented: Binding<Bool>, namespace: Namespace.ID) -> some View {
+        self.modifier(CustomSheet(isPresented: isPresented, passedNamespace: namespace))
     }
 }

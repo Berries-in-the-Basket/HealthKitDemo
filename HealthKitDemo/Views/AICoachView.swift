@@ -36,6 +36,22 @@ struct AICoachView: View {
             
             ScrollView{
                 Text(dataAnalyzer.aiCoachMessage ?? "")
+                    .contentTransition(.interpolate)
+                    .animation(.easeInOut(duration: 0.5), value: dataAnalyzer.aiCoachMessage)
+            }
+            .overlay{
+                if dataAnalyzer.isAnalyzing {
+                    VStack{
+                        Image(systemName: "apple.intelligence")
+                            .resizable()
+                            .frame(width: 50, height: 50)
+                            .symbolEffect(.pulse, options: .repeat(.continuous))
+                        Text("Analyzing...")
+                            .font(.callout)
+                    }
+                    .foregroundStyle(.secondary)
+                    .frame(width: 200)
+                }
             }
         }
         .padding(.horizontal)
